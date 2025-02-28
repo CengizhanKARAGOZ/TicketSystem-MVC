@@ -1,0 +1,18 @@
+﻿@{
+ViewData["Title"] = "Hoş Geldiniz!";
+}
+
+<div class="container text-center mt-5">
+    <h1>Destek Sistemi</h1>
+    <p>Destek taleplerinizi oluşturmak için lütfen giriş yapın.</p>
+
+    @if (!User.Identity.IsAuthenticated)
+    {
+    <a href="/Auth/Login" class="btn btn-primary btn-lg m-2">Giriş Yap</a>
+    <a href="/Auth/Register" class="btn btn-success btn-lg m-2">Kayıt Ol</a>
+    }
+    else
+    {
+    <a href="/Ticket/Index" class="btn btn-info btn-lg m-2">Destek Taleplerini Gör</a>
+    }
+</div>

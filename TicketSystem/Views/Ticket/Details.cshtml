@@ -1,0 +1,30 @@
+@model TicketSystem.Models.Ticket
+
+@{
+Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Title</h2>
+<p>@Model.Description</p>
+
+<h3>Yorumlar</h3>
+@if (Model.Comments != null && Model.Comments.Any())
+{
+<ul>
+    @foreach (var comment in Model.Comments)
+    {
+    <li>@comment.User?.FullName: @comment.Message</li>
+    }
+</ul>
+}
+else
+{
+<p>Henüz yorum yok.</p>
+}
+
+<h4>Yorum Ekle</h4>
+<form method="post" action="/Comment/AddComment">
+    <input type="hidden" name="ticketId" value="@Model.Id" />
+    <textarea name="message" class="form-control" required></textarea>
+    <button type="submit" class="btn btn-primary mt-2">Gönder</button>
+</form>

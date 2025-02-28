@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <title>@ViewData["Title"] - Ticket System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Destek Sistemi</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                @if (User.Identity.IsAuthenticated)
+                {
+                <li class="nav-item">
+                    <span class="nav-link">Hoş Geldiniz, @User.Identity.Name</span>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-danger" href="/Auth/Logout">Çıkış Yap</a>
+                </li>
+                }
+                else
+                {
+                <li class="nav-item">
+                    <a class="btn btn-primary" href="/Auth/Login">Giriş Yap</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-success" href="/Auth/Register">Kayıt Ol</a>
+                </li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-3">
+    @RenderBody()
+</div>
+</body>
+</html>

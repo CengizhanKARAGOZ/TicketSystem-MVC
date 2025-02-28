@@ -1,0 +1,42 @@
+@model List<TicketSystem.Models.Ticket>
+
+@{
+Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Destek Talepleri</h2>
+
+<!-- Destek Talebi Oluştur Butonu -->
+<a href="/Ticket/Create" class="btn btn-success mb-3">+ Destek Talebi Oluştur</a>
+
+@if (Model != null && Model.Any())
+{
+<table class="table">
+    <thead>
+    <tr>
+        <th>Başlık</th>
+        <th>Durum</th>
+        <th>Oluşturan</th>
+        <th>İşlemler</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var ticket in Model)
+    {
+    <tr>
+        <td>@ticket.Title</td>
+        <td>@ticket.Status</td>
+        <td>@(ticket.User != null ? ticket.User.FullName : "Bilinmeyen Kullanıcı")</td>
+        <td>
+            <a href="/Ticket/Edit/@ticket.Id" class="btn btn-primary btn-sm">Düzenle</a>
+            <a href="/Ticket/Delete/@ticket.Id" class="btn btn-danger btn-sm">Sil</a>
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>
+}
+else
+{
+<p class="text-danger">Henüz destek talebiniz bulunmamaktadır.</p>
+}
